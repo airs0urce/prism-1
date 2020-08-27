@@ -126,7 +126,7 @@
 		"arduino": {
 			"title": "Arduino",
 			"require": "cpp",
-			"owner": "eisbehr-"
+			"owner": "dkern"
 		},
 		"arff": {
 			"title": "ARFF",
@@ -203,6 +203,14 @@
 			"title": "Bro",
 			"owner": "wayward710"
 		},
+		"bsl": {
+			"title": "BSL (1C:Enterprise)",
+			"alias": "oscript",
+			"aliasTitles": {
+				"oscript": "OneScript"
+			},
+			"owner": "Diversus23"
+		},		
 		"c": {
 			"title": "C",
 			"require": "clike",
@@ -704,6 +712,11 @@
 			"title": "Mizar",
 			"owner": "Golmote"
 		},
+		"mongodb": {
+			"title": "MongoDB",
+			"owner": "airs0urce",
+			"require": "javascript"
+		},
 		"monkey": {
 			"title": "Monkey",
 			"owner": "Golmote"
@@ -727,6 +740,11 @@
 		"nand2tetris-hdl": {
 			"title": "Nand To Tetris HDL",
 			"owner": "stephanmax"
+		},
+		"naniscript": {
+			"title": "Naninovel Script",
+			"owner": "Elringus",
+			"alias": "nani"
 		},
 		"nasm": {
 			"title": "NASM",
@@ -1065,6 +1083,10 @@
 			"title": "SQL",
 			"owner": "multipetros"
 		},
+		"stan": {
+			"title": "Stan",
+			"owner": "RunDevelopment"
+		},
 		"iecst": {
 			"title": "Structured Text (IEC 61131-3)",
 			"owner": "serhioromano"
@@ -1136,6 +1158,14 @@
 			"optional": "js-templates",
 			"alias": "ts",
 			"owner": "vkbansal"
+		},
+		"typoscript": {
+			"title": "TypoScript",
+			"alias": "tsconfig",
+			"aliasTitles": {
+				"tsconfig": "TSConfig"
+			},
+			"owner": "dkern"
 		},
 		"unrealscript": {
 			"title": "UnrealScript",
