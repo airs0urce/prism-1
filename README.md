@@ -63,7 +63,13 @@ See what port http server started on and go to download.html, for example:
 http://127.0.0.1:8080/download.html
 
 Select "Minified version" and in Languages check syntaxes you need, go to page bottom and click "Download JS" and "Download CSS".
+Then use downloaded files same like you use other prism.js syntaxes, see instruction here: https://prismjs.com/#basic-usage
 
+language classes:
+- language-mongodb-aggregation
+- language-mongodb-document
+- language-mongodb-update
+- language-mongodb-filter
 
 ## How to edit syntaxes before using
 
