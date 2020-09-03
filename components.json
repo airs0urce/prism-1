@@ -718,6 +718,22 @@
 			"owner": "airs0urce",
 			"require": "javascript"
 		},
+		"mongodb-aggregation": {
+			"title": "MongoDB Aggregation",
+			"owner": "airs0urce"
+		},
+		"mongodb-document": {
+			"title": "MongoDB Document",
+			"owner": "airs0urce"
+		},
+		"mongodb-update": {
+			"title": "MongoDB Update",
+			"owner": "airs0urce"
+		},
+		"mongodb-filter": {
+			"title": "MongoDB Filter",
+			"owner": "airs0urce"
+		},
 		"monkey": {
 			"title": "Monkey",
 			"owner": "Golmote"

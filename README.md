@@ -1,32 +1,130 @@
-# [Prism](https://prismjs.com/)
+# Prism.js MongoDB Partial Syntaxes
 
-[![Build Status](https://travis-ci.org/PrismJS/prism.svg?branch=master)](https://travis-ci.org/PrismJS/prism)
-[![npm](https://img.shields.io/npm/dw/prismjs.svg)](https://www.npmjs.com/package/prismjs)
+Here is list of new syntaxes:
 
-Prism is a lightweight, robust, elegant syntax highlighting library. It's a spin-off project from [Dabblet](https://dabblet.com/).
+- mongodb-aggregation (MongoDB Aggregation)
+- mongodb-document (MongoDB Document)
+- mongodb-update (MongoDB Update)
+- mongodb-filter (MongoDB Filter)
 
-You can learn more on [prismjs.com](https://prismjs.com/).
+Each syntax highlights only JS object sent as part of query. For example:
 
-[Why another syntax highlighter?](https://lea.verou.me/2012/07/introducing-prism-an-awesome-new-syntax-highlighter/#more-1841)
+mongodb-filter will highlight this:
+```
+{
+    age: {$gt: 18},
+    children: {$exists: true}
+}
+```
 
-[More themes for Prism!](https://github.com/PrismJS/prism-themes)
+mongodb-update will highlight this:
+```
+{
+    $set: {age: 20},
+    $inc: {children: 2}
+}
+```
 
-## Contribute to Prism!
+etc.
 
-Prism depends on community contributions to expand and cover a wider array of use cases. If you like it, considering giving back by sending a pull request. Here are a few tips:
 
-- Read the [documentation](https://prismjs.com/extending.html). Prism was designed to be extensible.
-- Do not edit `prism.js`, it’s just the version of Prism used by the Prism website and is built automatically. Limit your changes to the unminified files in the `components/` folder. `prism.js` and all minified files are also generated automatically by our build system.
-- The build system uses [gulp](https://github.com/gulpjs/gulp) to minify the files and build `prism.js`. With all of Prism's dependencies installed, you just need to run the command `npm run build`.
-- Please follow the code conventions used in the files already. For example, I use [tabs for indentation and spaces for alignment](http://lea.verou.me/2012/01/why-tabs-are-clearly-superior/). Opening braces are on the same line, closing braces on their own line regardless of construct. There is a space before the opening brace. etc etc.
-- Please try to err towards more smaller PRs rather than few huge PRs. If a PR includes changes I want to merge and changes I don't, handling it becomes difficult.
-- My time is very limited these days, so it might take a long time to review longer PRs (short ones are usually merged very quickly), especially those modifying the Prism Core. This doesn't mean your PR is rejected.
-- If you contribute a new language definition, you will be responsible for handling bug reports about that language definition.
-- If you [add a new language definition](https://prismjs.com/extending.html#creating-a-new-language-definition) or plugin, you need to add it to `components.json` as well and rebuild Prism by running `npm run build`, so that it becomes available to the download build page. For new languages, please also add a few [tests](https://prismjs.com/test-suite.html) and an example in the `examples/` folder.
-- Go to [prism-themes](https://github.com/PrismJS/prism-themes) if you want to add a new theme.
+[How to use the new syntaxes](#how-to-use-the-new-syntaxes)
+[How to edit syntaxes before using](#how-to-edit-syntaxes-before-using)
 
-Thank you so much for contributing!!
+Recently I contributed "mongodb" syntax to Prism.js. It extends javascript syntax and highlights all MongoDB keywords like $get, $set, $where, $gt, etc, so all types of keywords (query, aggregation, update) and also functions like ObjectId(), Timestamp(), etc. Here you can read discussion in these two pull requests:
+https://github.com/PrismJS/prism/pull/2502
+https://github.com/PrismJS/prism/pull/2518
 
-## Translations
+So, all feature were implemented in one syntax. But for my project (https://github.com/airs0urce/punkmongo) I need support of partial mongodb syntaxes, because when I highlight "update" part of query I don't want Prism.js to highlight $lt, $gt or any other operations used only in "filter" part of query.
+As creating of sub-languages is not the approach Prism.js follow, I had to create this fork and add new syntaxes to be able to highlight only certain part of query. 
 
-* [![中文说明](http://awesomes.oss-cn-beijing.aliyuncs.com/readme.png)](https://www.awesomes.cn/repo/PrismJS/prism)
+Note: if you don't need partial highlighting for mongodb, you can use "mongodb" syntax which is merged to main Prism.js repo.
+
+
+#### How to use the new syntaxes
+
+Clone repo https://github.com/airs0urce/prism-mongodb
+```
+$ git clone https://github.com/airs0urce/prism-mongodb  
+$ cd prism-mongodb
+$ npm install  
+```
+
+Run http server inside prism-mongodb folder
+```
+$ cd prism-mongodb
+$ npm install -g http-server
+$ http-server -c-1
+```
+
+See what port http server started on and go to download.html, for example:
+http://127.0.0.1:8080/download.html
+
+Select "Minified version" and in Languages check syntaxes you need, go to page bottom and click "Download JS" and "Download CSS".
+
+
+#### How to edit syntaxes before using
+
+Clone repo https://github.com/airs0urce/prism-mongodb.
+```
+$ git clone https://github.com/airs0urce/prism-mongodb  
+$ cd prism-mongodb
+$ npm install  
+```
+
+Run http server inside prism-mongodb folder
+```
+$ cd prism-mongodb
+$ npm install -g http-server
+$ http-server -c-1
+```
+
+See what address http server started on and go to test.html, for example:
+Open http://127.0.0.1:8080/test.html
+
+On this page select any of mongo syntaxes:
+
+- MongoDB Aggregation
+- MongoDB Document
+- MongoDB Update
+- MongoDB Filter
+
+And then on this page you can check how highlight works.
+To change syntaxes edit these files:
+
+```
+components/prism-mongodb-aggregation.js
+components/prism-mongodb-document.js
+components/prism-mongodb-update.js
+components/prism-mongodb-filter.js
+```
+
+After edit you have to refresh page.
+
+When you finish editing syntaxes:
+
+1) Delete old minified version:
+```
+$ rm -f components/prism-mongodb-aggregation.min.js
+$ rm -f components/prism-mongodb-document.min.js
+$ rm -f components/prism-mongodb-update.min.js
+$ rm -f components/prism-mongodb-filter.min.js
+```
+
+2) Build:
+```
+$ npm run build
+```
+
+3) Start http server if not started yet:
+```
+$ http-server -c-1
+```
+
+4) See what port http server started on and go to download.html, for example:
+http://127.0.0.1:8080/download.html
+
+Select "Minified version" and in Languages check syntaxes you need, go to page bottom and click "Download JS" and "Download CSS".
+
+
+
