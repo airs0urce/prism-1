@@ -1,5 +1,12 @@
 # Prism.js MongoDB Partial Syntaxes
 
+Recently I contributed "mongodb" syntax to Prism.js. It extends javascript syntax and highlights all MongoDB keywords like $get, $set, $where, $gt, etc, so all types of keywords (query, aggregation, update) and also functions like ObjectId(), Timestamp(), etc. Here you can read discussion in these two pull requests:  
+https://github.com/PrismJS/prism/pull/2502  
+https://github.com/PrismJS/prism/pull/2518
+
+So, all feature were implemented in one syntax. But for my project (https://github.com/airs0urce/punkmongo) I need support of partial mongodb syntaxes, because when I highlight "update" part of query I don't want Prism.js to highlight $lt, $gt or any other operations used only in "filter" part of query.
+As creating of sub-languages is not the approach Prism.js follow, I had to create this fork and add new syntaxes to be able to highlight only certain part of query. 
+
 Here is list of new syntaxes:
 
 - mongodb-aggregation (MongoDB Aggregation)
@@ -33,15 +40,6 @@ mongodb-update will highlight this:
 ```
 
 etc.
-
-Recently I contributed "mongodb" syntax to Prism.js. It extends javascript syntax and highlights all MongoDB keywords like $get, $set, $where, $gt, etc, so all types of keywords (query, aggregation, update) and also functions like ObjectId(), Timestamp(), etc. Here you can read discussion in these two pull requests:  
-https://github.com/PrismJS/prism/pull/2502  
-https://github.com/PrismJS/prism/pull/2518
-
-So, all feature were implemented in one syntax. But for my project (https://github.com/airs0urce/punkmongo) I need support of partial mongodb syntaxes, because when I highlight "update" part of query I don't want Prism.js to highlight $lt, $gt or any other operations used only in "filter" part of query.
-As creating of sub-languages is not the approach Prism.js follow, I had to create this fork and add new syntaxes to be able to highlight only certain part of query. 
-
-
 
 ## How to use the new syntaxes
 
