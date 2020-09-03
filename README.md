@@ -7,6 +7,11 @@ Here is list of new syntaxes:
 - mongodb-update (MongoDB Update)
 - mongodb-filter (MongoDB Filter)
 
+#### [How to use the new syntaxes](#how-to-use-the-new-syntaxes)  
+#### [How to edit syntaxes before using](#how-to-edit-syntaxes-before-using)
+
+---
+
 Each syntax highlights only JS object sent as part of query. For example:
 
 mongodb-filter will highlight this:
@@ -26,10 +31,6 @@ mongodb-update will highlight this:
 ```
 
 etc.
-
-
-[How to use the new syntaxes](#how-to-use-the-new-syntaxes)
-[How to edit syntaxes before using](#how-to-edit-syntaxes-before-using)
 
 Recently I contributed "mongodb" syntax to Prism.js. It extends javascript syntax and highlights all MongoDB keywords like $get, $set, $where, $gt, etc, so all types of keywords (query, aggregation, update) and also functions like ObjectId(), Timestamp(), etc. Here you can read discussion in these two pull requests:
 https://github.com/PrismJS/prism/pull/2502
