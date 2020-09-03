@@ -7,6 +7,8 @@ Here is list of new syntaxes:
 - mongodb-update (MongoDB Update)
 - mongodb-filter (MongoDB Filter)
 
+Note: if you don't need partial highlighting for mongodb, you can use "mongodb" syntax which is already merged to main Prism.js repo and available on https://prismjs.com/.
+
 [How to use the new syntaxes](#how-to-use-the-new-syntaxes)  
 [How to edit syntaxes before using](#how-to-edit-syntaxes-before-using)
 
@@ -39,7 +41,6 @@ https://github.com/PrismJS/prism/pull/2518
 So, all feature were implemented in one syntax. But for my project (https://github.com/airs0urce/punkmongo) I need support of partial mongodb syntaxes, because when I highlight "update" part of query I don't want Prism.js to highlight $lt, $gt or any other operations used only in "filter" part of query.
 As creating of sub-languages is not the approach Prism.js follow, I had to create this fork and add new syntaxes to be able to highlight only certain part of query. 
 
-Note: if you don't need partial highlighting for mongodb, you can use "mongodb" syntax which is merged to main Prism.js repo.
 
 
 ## How to use the new syntaxes
