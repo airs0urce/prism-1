@@ -7,8 +7,8 @@ Here is list of new syntaxes:
 - mongodb-update (MongoDB Update)
 - mongodb-filter (MongoDB Filter)
 
-#### [How to use the new syntaxes](#how-to-use-the-new-syntaxes)  
-#### [How to edit syntaxes before using](#how-to-edit-syntaxes-before-using)
+[How to use the new syntaxes](#how-to-use-the-new-syntaxes)  
+[How to edit syntaxes before using](#how-to-edit-syntaxes-before-using)
 
 ---
 
@@ -42,7 +42,7 @@ As creating of sub-languages is not the approach Prism.js follow, I had to creat
 Note: if you don't need partial highlighting for mongodb, you can use "mongodb" syntax which is merged to main Prism.js repo.
 
 
-#### How to use the new syntaxes
+## How to use the new syntaxes
 
 Clone repo https://github.com/airs0urce/prism-mongodb
 ```
@@ -64,7 +64,7 @@ http://127.0.0.1:8080/download.html
 Select "Minified version" and in Languages check syntaxes you need, go to page bottom and click "Download JS" and "Download CSS".
 
 
-#### How to edit syntaxes before using
+## How to edit syntaxes before using
 
 Clone repo https://github.com/airs0urce/prism-mongodb.
 ```
