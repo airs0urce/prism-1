@@ -124,15 +124,6 @@ $ rm -f components/prism-mongodb-filter.min.js
 $ npm run build
 ```
 
-3) Start http server if not started yet:
-```
-$ http-server -c-1
-```
-
-4) See what port http server started on and go to download.html, for example:
-http://127.0.0.1:8080/download.html
-
-Select "Minified version" and in Languages check syntaxes you need, go to page bottom and click "Download JS" and "Download CSS".
-
+3) Go to [How to use the new syntaxes](#how-to-use-the-new-syntaxes) and follow instructions there.
 
 
