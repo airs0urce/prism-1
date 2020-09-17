@@ -21,6 +21,7 @@
 		},
 		'string': {
 			pattern: /(['"]).*?[^\\]\1/i,
+			greedy: true,
 			inside: {
 				url: {
 					// url pattern

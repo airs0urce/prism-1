@@ -52,6 +52,11 @@
 
     <section class="readme usertext">
         <article><h1>Prism.js MongoDB Partial Syntaxes</h1>
+<p>Recently I contributed &quot;mongodb&quot; syntax to Prism.js. It extends javascript syntax and highlights all MongoDB keywords like $get, $set, $where, $gt, etc, so all types of keywords (query, aggregation, update) and also functions like ObjectId(), Timestamp(), etc. Here you can read discussion in these two pull requests:<br>
+https://github.com/PrismJS/prism/pull/2502<br>
+https://github.com/PrismJS/prism/pull/2518</p>
+<p>So, all feature were implemented in one syntax. But for my project (https://github.com/airs0urce/punkmongo) I need support of partial mongodb syntaxes, because when I highlight &quot;update&quot; part of query I don't want Prism.js to highlight $lt, $gt or any other operations used only in &quot;filter&quot; part of query.
+As creating of sub-languages is not the approach Prism.js follow, I had to create this fork and add new syntaxes to be able to highlight only certain part of query.</p>
 <p>Here is list of new syntaxes:</p>
 <ul>
 <li>mongodb-aggregation (MongoDB Aggregation)</li>
@@ -59,6 +64,10 @@
 <li>mongodb-update (MongoDB Update)</li>
 <li>mongodb-filter (MongoDB Filter)</li>
 </ul>
+<p>Note: if you don't need partial highlighting for mongodb, you can use &quot;mongodb&quot; syntax which is already merged to main Prism.js repo and available on https://prismjs.com/.</p>
+<p><a href="#how-to-use-the-new-syntaxes">How to use the new syntaxes</a><br>
+<a href="#how-to-edit-syntaxes-before-using">How to edit syntaxes before using</a></p>
+<hr>
 <p>Each syntax highlights only JS object sent as part of query. For example:</p>
 <p>mongodb-filter will highlight this:</p>
 <pre class="prettyprint source"><code>{
@@ -73,15 +82,7 @@
 }
 </code></pre>
 <p>etc.</p>
-<p><a href="#how-to-use-the-new-syntaxes">How to use the new syntaxes</a>
-<a href="#how-to-edit-syntaxes-before-using">How to edit syntaxes before using</a></p>
-<p>Recently I contributed &quot;mongodb&quot; syntax to Prism.js. It extends javascript syntax and highlights all MongoDB keywords like $get, $set, $where, $gt, etc, so all types of keywords (query, aggregation, update) and also functions like ObjectId(), Timestamp(), etc. Here you can read discussion in these two pull requests:
-https://github.com/PrismJS/prism/pull/2502
-https://github.com/PrismJS/prism/pull/2518</p>
-<p>So, all feature were implemented in one syntax. But for my project (https://github.com/airs0urce/punkmongo) I need support of partial mongodb syntaxes, because when I highlight &quot;update&quot; part of query I don't want Prism.js to highlight $lt, $gt or any other operations used only in &quot;filter&quot; part of query.
-As creating of sub-languages is not the approach Prism.js follow, I had to create this fork and add new syntaxes to be able to highlight only certain part of query.</p>
-<p>Note: if you don't need partial highlighting for mongodb, you can use &quot;mongodb&quot; syntax which is merged to main Prism.js repo.</p>
-<h4>How to use the new syntaxes</h4>
+<h2>How to use the new syntaxes</h2>
 <p>Clone repo https://github.com/airs0urce/prism-mongodb</p>
 <pre class="prettyprint source"><code>$ git clone https://github.com/airs0urce/prism-mongodb  
 $ cd prism-mongodb
@@ -94,8 +95,16 @@ $ http-server -c-1
 </code></pre>
 <p>See what port http server started on and go to download.html, for example:
 http://127.0.0.1:8080/download.html</p>
-<p>Select &quot;Minified version&quot; and in Languages check syntaxes you need, go to page bottom and click &quot;Download JS&quot; and &quot;Download CSS&quot;.</p>
-<h4>How to edit syntaxes before using</h4>
+<p>Select &quot;Minified version&quot; and in Languages check syntaxes you need, go to page bottom and click &quot;Download JS&quot; and &quot;Download CSS&quot;.
+Then use downloaded files same like you use other prism.js syntaxes, see instruction here: https://prismjs.com/#basic-usage</p>
+<p>language classes:</p>
+<ul>
+<li>language-mongodb-aggregation</li>
+<li>language-mongodb-document</li>
+<li>language-mongodb-update</li>
+<li>language-mongodb-filter</li>
+</ul>
+<h2>How to edit syntaxes before using</h2>
 <p>Clone repo https://github.com/airs0urce/prism-mongodb.</p>
 <pre class="prettyprint source"><code>$ git clone https://github.com/airs0urce/prism-mongodb  
 $ cd prism-mongodb
@@ -138,15 +147,8 @@ $ rm -f components/prism-mongodb-filter.min.js
 <pre class="prettyprint source"><code>$ npm run build
 </code></pre>
 <ol start="3">
-<li>Start http server if not started yet:</li>
-</ol>
-<pre class="prettyprint source"><code>$ http-server -c-1
-</code></pre>
-<ol start="4">
-<li>See what port http server started on and go to download.html, for example:
-http://127.0.0.1:8080/download.html</li>
-</ol>
-<p>Select &quot;Minified version&quot; and in Languages check syntaxes you need, go to page bottom and click &quot;Download JS&quot; and &quot;Download CSS&quot;.</p></article>
+<li>Go to <a href="#how-to-use-the-new-syntaxes">How to use the new syntaxes</a> and follow instructions there.</li>
+</ol></article>
     </section>
 
 

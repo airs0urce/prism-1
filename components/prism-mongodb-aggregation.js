@@ -66,6 +66,7 @@
 		},
 		'string': {
 			pattern: /(['"]).*?[^\\]\1/i,
+			greedy: true
 		},
 		'comment': [
 			{pattern: /\/\*.*\*\//s, greedy: true},
