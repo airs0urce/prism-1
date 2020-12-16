@@ -1,13 +1,12 @@
-'Foo
-'bar_42
+true
+false
 
 ----------------------------------------------------
 
 [
-	["type_variable", "'Foo"],
-	["type_variable", "'bar_42"]
+	["boolean", "true"],
+	["boolean", "false"]
 ]
 
 ----------------------------------------------------
-
-Checks for type variables.
+Check for boolean

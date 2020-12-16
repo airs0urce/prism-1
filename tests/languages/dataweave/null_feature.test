@@ -1,13 +1,9 @@
-#
-# foobar
+null
 
 ----------------------------------------------------
 
 [
-	["shell-comment", "#"],
-	["shell-comment", "# foobar"]
+	["keyword", "null"]
 ]
-
 ----------------------------------------------------
-
-Checks for shell-like comments.
+Check for null
