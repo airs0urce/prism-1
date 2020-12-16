@@ -24,7 +24,7 @@ Note: if you don't need partial highlighting for mongodb, you can use "mongodb" 
 Each syntax highlights only JS object sent as part of query. For example:
 
 mongodb-filter will highlight this:
-```
+```json
 {
     age: {$gt: 18},
     children: {$exists: true}
@@ -32,7 +32,7 @@ mongodb-filter will highlight this:
 ```
 
 mongodb-update will highlight this:
-```
+```json
 {
     $set: {age: 20},
     $inc: {children: 2}
@@ -44,14 +44,14 @@ etc.
 ## How to use the new syntaxes
 
 Clone repo https://github.com/airs0urce/prism-mongodb
-```
+```shell
 $ git clone https://github.com/airs0urce/prism-mongodb  
 $ cd prism-mongodb
 $ npm install  
 ```
 
 Run http server inside prism-mongodb folder
-```
+```shell
 $ cd prism-mongodb
 $ npm install -g http-server
 $ http-server -c-1
@@ -72,14 +72,14 @@ language classes:
 ## How to edit syntaxes before using
 
 Clone repo https://github.com/airs0urce/prism-mongodb.
-```
+```shell
 $ git clone https://github.com/airs0urce/prism-mongodb  
 $ cd prism-mongodb
 $ npm install  
 ```
 
 Run http server inside prism-mongodb folder
-```
+```shell
 $ cd prism-mongodb
 $ npm install -g http-server
 $ http-server -c-1
@@ -110,7 +110,7 @@ After edit you have to refresh page.
 When you finish editing syntaxes:
 
 1) Delete old minified version:
-```
+```shell
 $ rm -f components/prism-mongodb-aggregation.min.js
 $ rm -f components/prism-mongodb-document.min.js
 $ rm -f components/prism-mongodb-update.min.js
@@ -118,7 +118,7 @@ $ rm -f components/prism-mongodb-filter.min.js
 ```
 
 2) Build:
-```
+```shell
 $ npm run build
 ```
 
