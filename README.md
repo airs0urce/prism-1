@@ -24,7 +24,7 @@ Note: if you don't need partial highlighting for mongodb, you can use "mongodb" 
 Each syntax highlights only JS object sent as part of query. For example:
 
 mongodb-filter will highlight this:
-```json
+```js
 {
     age: {$gt: 18},
     children: {$exists: true}
@@ -32,7 +32,7 @@ mongodb-filter will highlight this:
 ```
 
 mongodb-update will highlight this:
-```json
+```js
 {
     $set: {age: 20},
     $inc: {children: 2}
