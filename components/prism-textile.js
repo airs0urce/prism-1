@@ -19,18 +19,18 @@
 
 	var modifierTokens = {
 		'css': {
-			pattern: /\{[^}]+\}/,
+			pattern: /\{[^{}]+\}/,
 			inside: {
 				rest: Prism.languages.css
 			}
 		},
 		'class-id': {
-			pattern: /(\()[^)]+(?=\))/,
+			pattern: /(\()[^()]+(?=\))/,
 			lookbehind: true,
 			alias: 'attr-value'
 		},
 		'lang': {
-			pattern: /(\[)[^\]]+(?=\])/,
+			pattern: /(\[)[^\[\]]+(?=\])/,
 			lookbehind: true,
 			alias: 'attr-value'
 		},
@@ -62,7 +62,7 @@
 				// # List item
 				// * List item
 				'list': {
-					pattern: withModifier(/^[*#]+<MOD>*\s+.+/.source, 'm'),
+					pattern: withModifier(/^[*#]+<MOD>*\s+\S.*/.source, 'm'),
 					inside: {
 						'modifier': {
 							pattern: withModifier(/(^[*#]+)<MOD>+/.source),
@@ -154,11 +154,11 @@
 					pattern: /^\[[^\]]+\]\S+$/m,
 					inside: {
 						'string': {
-							pattern: /(\[)[^\]]+(?=\])/,
+							pattern: /(^\[)[^\]]+(?=\])/,
 							lookbehind: true
 						},
 						'url': {
-							pattern: /(\])\S+$/,
+							pattern: /(^\])\S+$/,
 							lookbehind: true
 						},
 						'punctuation': /[\[\]]/
@@ -190,10 +190,10 @@
 				// !image.jpg!
 				// !image.jpg(Title)!:http://example.com
 				'image': {
-					pattern: withModifier(/!(?:<MOD>|<PAR>|[<>=])*[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/.source),
+					pattern: withModifier(/!(?:<MOD>|<PAR>|[<>=])*(?![<>=])[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/.source),
 					inside: {
 						'source': {
-							pattern: withModifier(/(^!(?:<MOD>|<PAR>|[<>=])*)[^!\s()]+(?:\([^)]+\))?(?=!)/.source),
+							pattern: withModifier(/(^!(?:<MOD>|<PAR>|[<>=])*)(?![<>=])[^!\s()]+(?:\([^)]+\))?(?=!)/.source),
 							lookbehind: true,
 							alias: 'url'
 						},
@@ -224,7 +224,7 @@
 					pattern: /\b[A-Z\d]+\([^)]+\)/,
 					inside: {
 						'comment': {
-							pattern: /(\()[^)]+(?=\))/,
+							pattern: /(\()[^()]+(?=\))/,
 							lookbehind: true
 						},
 						'punctuation': /[()]/

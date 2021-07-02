@@ -42,8 +42,8 @@
 			lookbehind: true,
 			alias: 'function'
 		},
-		'function': /\w+(?=\s*\()/,
-		'number': /\d+(?:\.\d+)?/,
+		'function': /\b\w+(?=\s*\()/,
+		'number': /\b\d+(?:\.\d+)?\b/,
 		'operator': /\.\.[<*!]?|->|--|\+\+|&&|\|\||\?{1,2}|[-+*/%!=<>]=?|\b(?:gt|gte|lt|lte)\b/,
 		'punctuation': /[,;.:()[\]{}]/
 	};
@@ -66,7 +66,7 @@
 				},
 				'punctuation': /^<\/?|\/?>$/,
 				'content': {
-					pattern: /[\s\S]*\S[\s\S]*/,
+					pattern: /\s*\S[\s\S]*/,
 					alias: 'ftl',
 					inside: ftl
 				}
@@ -77,7 +77,7 @@
 			inside: {
 				'punctuation': /^\$\{|\}$/,
 				'content': {
-					pattern: /[\s\S]*\S[\s\S]*/,
+					pattern: /\s*\S[\s\S]*/,
 					alias: 'ftl',
 					inside: ftl
 				}

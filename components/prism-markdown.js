@@ -1,7 +1,7 @@
 (function (Prism) {
 
 	// Allow only one line break
-	var inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?!\n|\r\n?))/.source;
+	var inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
 
 	/**
 	 * This function is intended for the creation of the bold or italic pattern.
@@ -20,7 +20,7 @@
 
 
 	var tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
-	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|$)/.source.replace(/__/g, function () { return tableCell; });
+	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(/__/g, function () { return tableCell; });
 	var tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source;
 
 
@@ -86,12 +86,6 @@
 				alias: 'keyword'
 			},
 			{
-				// `code`
-				// ``code``
-				pattern: /``.+?``|`[^`\r\n]+`/,
-				alias: 'keyword'
-			},
-			{
 				// ```optional language
 				// code block
 				// ```
@@ -126,7 +120,7 @@
 			{
 				// # title 1
 				// ###### title 6
-				pattern: /(^\s*)#+.+/m,
+				pattern: /(^\s*)#.+/m,
 				lookbehind: true,
 				alias: 'important',
 				inside: {
@@ -205,7 +199,8 @@
 		'strike': {
 			// ~~strike through~~
 			// ~strike~
-			pattern: createInline(/(~~?)(?:(?!~)<inner>)+?\2/.source),
+			// eslint-disable-next-line regexp/strict
+			pattern: createInline(/(~~?)(?:(?!~)<inner>)+\2/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -217,32 +212,46 @@
 				'punctuation': /~~?/
 			}
 		},
+		'code-snippet': {
+			// `code`
+			// ``code``
+			pattern: /(^|[^\\`])(?:``[^`\r\n]+(?:`[^`\r\n]+)*``(?!`)|`[^`\r\n]+`(?!`))/,
+			lookbehind: true,
+			greedy: true,
+			alias: ['code', 'keyword']
+		},
 		'url': {
 			// [example](http://example.com "Optional title")
 			// [example][id]
 			// [example] [id]
-			pattern: createInline(/!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[(?:(?!\])<inner>)+\])/.source),
+			pattern: createInline(/!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)|[ \t]?\[(?:(?!\])<inner>)+\])/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: {
-				'variable': {
-					pattern: /(\[)[^\]]+(?=\]$)/,
-					lookbehind: true
-				},
+				'operator': /^!/,
 				'content': {
-					pattern: /(^!?\[)[^\]]+(?=\])/,
+					pattern: /(^\[)[^\]]+(?=\])/,
 					lookbehind: true,
 					inside: {} // see below
 				},
+				'variable': {
+					pattern: /(^\][ \t]?\[)[^\]]+(?=\]$)/,
+					lookbehind: true
+				},
+				'url': {
+					pattern: /(^\]\()[^\s)]+/,
+					lookbehind: true
+				},
 				'string': {
-					pattern: /"(?:\\.|[^"\\])*"(?=\)$)/
+					pattern: /(^[ \t]+)"(?:\\.|[^"\\])*"(?=\)$)/,
+					lookbehind: true
 				}
 			}
 		}
 	});
 
 	['url', 'bold', 'italic', 'strike'].forEach(function (token) {
-		['url', 'bold', 'italic', 'strike'].forEach(function (inside) {
+		['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach(function (inside) {
 			if (token !== inside) {
 				Prism.languages.markdown[token].inside.content.inside[inside] = Prism.languages.markdown[inside];
 			}
@@ -291,7 +300,7 @@
 					// this might be a language that Prism does not support
 
 					// do some replacements to support C++, C#, and F#
-					var lang = codeLang.content.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp')
+					var lang = codeLang.content.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp');
 					// only use the first word
 					lang = (/[a-z][\w-]*/i.exec(lang) || [''])[0].toLowerCase();
 					var alias = 'language-' + lang;
@@ -341,8 +350,10 @@
 				});
 			}
 		} else {
-			// reverse Prism.util.encode
-			var code = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
+			// get the textContent of the given env HTML
+			var tempContainer = document.createElement('div');
+			tempContainer.innerHTML = env.content;
+			var code = tempContainer.textContent;
 
 			env.content = Prism.highlight(code, grammar, codeLang);
 		}
